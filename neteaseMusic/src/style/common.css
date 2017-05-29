@@ -1,0 +1,62 @@
+*{
+        padding: 0px;
+        margin:0px;
+}
+.m-top, .m-top .logo a, .m-nav li, .m-nav li span, .m-nav a, .m-nav a em, .m-nav .cor, .m-nav .hot, .m-srch .srchbg, .m-subnav, .m-subnav .nav a, .m-subnav .nav em, .m-tophead, .m-mail, .m-tophead .head .mask, .m-msg {
+    background: url(./../image/topbar.png) no-repeat 0 9999px;
+}
+li, s {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+em, i {
+    font-style: normal;
+    text-align: left;
+    font-size: inherit;
+}
+.m-srch, .m-srch .srchbg {
+    float: right;
+    width: 210px;
+    height: 31px;
+}
+.f-pr {
+    position: relative;
+    zoom: 1;
+}
+body, textarea, select, input, button {
+    font-size: 12px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-text-size-adjust: none;
+}
+img, .txt {
+    border: 0;
+}
+.g-bd, .g-bd1, .g-bd2, .g-bd3, .g-bd4, .g-bd5, .g-bd6, .g-bd7 {
+    width: 980px;
+    min-height: 700px;
+    _height: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-width: 0 1px;
+}
+.s-bg, .v-hd2, .n-disk li {
+    background: url(./../image/index.png) no-repeat 0 9999px;
+}
+.f-tdn, .f-tdn:hover {
+    text-decoration: none;
+}
+.f-ff2 {
+    font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+}
+a, a *, .f-hand, .f-hand * {
+    cursor: pointer;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
