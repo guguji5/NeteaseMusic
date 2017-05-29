@@ -60,3 +60,21 @@ a {
     text-decoration: none;
     color: #333;
 }
+.u-cover .bottom, .u-cover .msk, .n-musicsd .lst .avatar .msk {
+    background: url(./../image/coverall.png) no-repeat;
+}
+.u-cover .icon-headset, .u-cover .icon-play {
+    display: inline-block;
+}
+.u-cover .ply, .u-cover .icon-headset, .u-cover .icon-play, .u-face .msk, .n-note .head .msk, .icn-vip, .icn-daren, .u-checkbox {
+    background: url(./../image/iconall.png) no-repeat;
+}
+.f-thide {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+.u-btn2, .u-btn2 i, .u-btn2 .icn, .u-btni, .u-btni i, .u-tag, .u-tag i, .u-btni-addply .ply {
+    background: url(./../image/button2.png) no-repeat 0 9999px;
+}
