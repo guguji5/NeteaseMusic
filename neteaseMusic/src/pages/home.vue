@@ -268,7 +268,8 @@
     }
 
     .g-wrap3 {
-        padding: 20px 20px 40px;
+        padding: 20px 20px 20px;/* 微调成下边距20px*/
+        /*padding: 20px 20px 40px;*/
     }
 
     .v-hd2 {
@@ -560,5 +561,12 @@
     .n-myinfo .dny li.lst {
         padding-right: 0;
         border-right: none;
+    }
+    .f-cb:after {
+        clear: both;
+        content: '.';
+        display: block;
+        height: 0;
+        visibility: hidden;
     }
 </style>

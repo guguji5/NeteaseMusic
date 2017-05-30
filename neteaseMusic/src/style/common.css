@@ -37,7 +37,7 @@ img, .txt {
 }
 .g-bd, .g-bd1, .g-bd2, .g-bd3, .g-bd4, .g-bd5, .g-bd6, .g-bd7 {
     width: 980px;
-    min-height: 700px;
+    /*min-height: 700px;*/
     _height: 700px;
     margin: 0 auto;
     background-color: #fff;
