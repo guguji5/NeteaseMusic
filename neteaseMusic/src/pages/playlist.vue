@@ -1203,7 +1203,9 @@
     background-color: #fff;
     line-height: 22px;
   }
-
+  div.u-page .zpgi:hover {
+    border-color: #666;
+  }
   div.u-page a:hover {
     text-decoration: none;
   }
