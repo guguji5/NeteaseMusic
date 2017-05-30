@@ -50,9 +50,13 @@
   <div class="m-subnav j-tflag" v-else>
     <div class="wrap f-pr">
       <ul class="nav">
-        <li><a class="z-slt"><em>推荐</em></a></li>
+        <li><a><em>推荐</em></a></li>
         <li><a><em>排行榜</em></a></li>
-        <li><a><em>歌单</em></a></li>
+        <li><a v-on:click='isSubNav=false'class="z-slt">
+          <router-link to="playlist">
+            <em>歌单</em>
+          </router-link>
+          </a></li>
         <li><a><em>主播电台</em></a></li>
         <li><a><em>歌手</em></a></li>
         <li><a><em>新碟上架</em></a></li>
@@ -85,7 +89,7 @@
   .wrap{
     width:1100px;
     margin:0 auto;
-  };
+  }
   .m-top .logo {
     float: left;
     width: 176px;
