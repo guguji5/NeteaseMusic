@@ -23,28 +23,24 @@
                                         class="cor s-bg s-bg-6">&nbsp;</i></span>
                             </div>
                             <ul class="m-cvrlst f-cb">
-                                <li>
+                                <li v-for="item in personalized">
                                     <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/wcmIXVz88vmFWaKiBDcnFQ==/109951162935860213.jpg?param=140y140">
-                                        <a title="|华语女声| 薄荷的清香，冰镇西瓜的清凉" href="/playlist?id=568857491" class="msk"
-                                           data-res-id="568857491" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|0|featured|user-playlist"></a>
+                                        <img v-bind:src="item.picUrl">
+                                        <a title="item.name" href="/playlist?id=568857491" class="msk"></a>
                                         <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="13"
-                                               data-res-id="568857491" data-res-action="play"></a>
+                                            <a class="icon-play f-fr" title="播放" href="javascript:;"></a>
                                             <span class="icon-headset"></span>
-                                            <span class="nb">226万</span>
+                                            <span class="nb">{{item.playCount}}</span>
                                         </div>
                                     </div>
                                     <p class="dec">
-                                        <a title="|华语女声| 薄荷的清香，冰镇西瓜的清凉" class="tit s-fc0" href="/playlist?id=568857491"
-                                           data-res-id="568857491" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|0|featured|user-playlist">
-                                            |华语女声| 薄荷的清香，冰镇西瓜的清凉
+                                        <a title="item.name" class="tit s-fc0" href="/playlist?id=568857491">
+                                            <i class="u-icn u-icn-53" v-if="item.type==1"></i>
+                                            {{item.name}}
                                         </a>
                                     </p>
                                 </li>
-                                <li>
+                                <!--<li> 留个原版的demo，以备事件绑定啊
                                     <div class="u-cover u-cover-1">
                                         <img src="http://p1.music.126.net/FQkA98WGP5uzTF1hi7zVgQ==/18748872278752961.jpg?param=140y140">
                                         <a title="华语篇丨这些歌的歌名你都能记住吗？" href="/playlist?id=740393902" class="msk"
@@ -61,139 +57,12 @@
                                         <a title="华语篇丨这些歌的歌名你都能记住吗？" class="tit s-fc0" href="/playlist?id=740393902"
                                            data-res-id="740393902" data-res-type="13" data-res-action="log"
                                            data-res-data="recommendclick|1|featured|user-playlist">
+                                            <i class="u-icn u-icn-53"></i>
                                             华语篇丨这些歌的歌名你都能记住吗？
                                         </a>
                                     </p>
-                                </li>
-                                <li>
-                                    <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/uXbDB1aWsp36_I_lQs-DeA==/1411772930113118.jpg?param=140y140">
-                                        <a title="这些充满『强烈画面感』的音乐" href="/playlist?id=156934569" class="msk"
-                                           data-res-id="156934569" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|2|itembased_top|user-playlist"></a>
-                                        <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="13"
-                                               data-res-id="156934569" data-res-action="play"></a>
-                                            <span class="icon-headset"></span>
-                                            <span class="nb">2752万</span>
-                                        </div>
-                                    </div>
-                                    <p class="dec">
-                                        <a title="这些充满『强烈画面感』的音乐" class="tit s-fc0" href="/playlist?id=156934569"
-                                           data-res-id="156934569" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|2|itembased_top|user-playlist">
-                                            这些充满『强烈画面感』的音乐
-                                        </a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/o5QNGr3Mpj43ZXYFYjAoMw==/18926993160685383.jpg?param=140y140">
-                                        <a title="端午节，听龙舟竞渡，闻粽叶飘香" href="/dj?id=905939720" class="msk"
-                                           data-res-id="905939720" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|3|featured|user-playlist"></a>
-                                        <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="17"
-                                               data-res-id="905939720" data-res-action="play"></a>
-                                            <span class="icon-headset"></span>
-                                            <span class="nb">31805</span>
-                                        </div>
-                                    </div>
-                                    <p class="dec">
-                                        <a title="端午节，听龙舟竞渡，闻粽叶飘香" class="tit s-fc0" href="/dj?id=905939720"
-                                           data-res-id="905939720" data-res-type="17" data-res-action="log"
-                                           data-res-data="recommendclick|3|featured|user-playlist">
-                                            <i class="u-icn u-icn-53"></i>
-                                            端午节，听龙舟竞渡，闻粽叶飘香
-                                        </a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/y3uOwtRZScLhsEUmPdIOfw==/18633423557808008.jpg?param=140y140">
-                                        <a title="中国摇滚 | 当年他们，是最叛逆的精神" href="/playlist?id=718161859" class="msk"
-                                           data-res-id="718161859" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|4|tagbasedUGC_top|user-playlist"></a>
-                                        <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="13"
-                                               data-res-id="718161859" data-res-action="play"></a>
-                                            <span class="icon-headset"></span>
-                                            <span class="nb">73万</span>
-                                        </div>
-                                    </div>
-                                    <p class="dec">
-                                        <a title="中国摇滚 | 当年他们，是最叛逆的精神" class="tit s-fc0" href="/playlist?id=718161859"
-                                           data-res-id="718161859" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|4|tagbasedUGC_top|user-playlist">
-                                            中国摇滚 | 当年他们，是最叛逆的精神
-                                        </a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/TJTih-n_hHmkT2oQtH8Eug==/18635622581084508.jpg?param=140y140">
-                                        <a title="谷阿莫：6分钟听完电影《摔跤吧！爸爸 Dangal》" href="/dj?id=906102223" class="msk"
-                                           data-res-id="906102223" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|5|featured|user-playlist"></a>
-                                        <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="17"
-                                               data-res-id="906102223" data-res-action="play"></a>
-                                            <span class="icon-headset"></span>
-                                            <span class="nb">10万</span>
-                                        </div>
-                                    </div>
-                                    <p class="dec">
-                                        <a title="谷阿莫：6分钟听完电影《摔跤吧！爸爸 Dangal》" class="tit s-fc0" href="/dj?id=906102223"
-                                           data-res-id="906102223" data-res-type="17" data-res-action="log"
-                                           data-res-data="recommendclick|5|featured|user-playlist">
-                                            <i class="u-icn u-icn-53"></i>
-                                            谷阿莫：6分钟听完电影《摔跤吧！爸爸 Dangal》
-                                        </a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/UH7VjLrtOVRU5RRqrUX59A==/18705991325201475.jpg?param=140y140">
-                                        <a title="奇葩说第四季 BGM" href="/playlist?id=648240768" class="msk"
-                                           data-res-id="648240768" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|6|tagbasedUGC_top|user-playlist"></a>
-                                        <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="13"
-                                               data-res-id="648240768" data-res-action="play"></a>
-                                            <span class="icon-headset"></span>
-                                            <span class="nb">25257</span>
-                                        </div>
-                                    </div>
-                                    <p class="dec">
-                                        <a title="奇葩说第四季 BGM" class="tit s-fc0" href="/playlist?id=648240768"
-                                           data-res-id="648240768" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|6|tagbasedUGC_top|user-playlist">
-                                            奇葩说第四季 BGM
-                                        </a>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="u-cover u-cover-1">
-                                        <img src="http://p1.music.126.net/odCbZEEMSYstlDcNAvKBbw==/3420580759999204.jpg?param=140y140">
-                                        <a title="陈奕迅：十首歌给你安慰，让你流泪" href="/dj?id=900429471" class="msk"
-                                           data-res-id="900429471" data-res-type="13" data-res-action="log"
-                                           data-res-data="recommendclick|7|byartist_djtop|user-playlist"></a>
-                                        <div class="bottom">
-                                            <a class="icon-play f-fr" title="播放" href="javascript:;" data-res-type="17"
-                                               data-res-id="900429471" data-res-action="play"></a>
-                                            <span class="icon-headset"></span>
-                                            <span class="nb">103万</span>
-                                        </div>
-                                    </div>
-                                    <p class="dec">
-                                        <a title="陈奕迅：十首歌给你安慰，让你流泪" class="tit s-fc0" href="/dj?id=900429471"
-                                           data-res-id="900429471" data-res-type="17" data-res-action="log"
-                                           data-res-data="recommendclick|7|byartist_djtop|user-playlist">
-                                            <i class="u-icn u-icn-53"></i>
-                                            陈奕迅：十首歌给你安慰，让你流泪
-                                        </a>
-                                    </p>
-                                </li>
+                                </li>-->
+
                             </ul>
                         </div>
                     </div>
@@ -226,13 +95,44 @@
 </template>
 
 <script>
-    import banner from '../components/banner'
+    import banner from '../components/banner';
+    import {personalized,djprogram} from  './../service/getDate';
+
     export default {
         name: 'hello',
         data () {
             return {
-                msg: 'this is the content of area'
+                personalized: []
             }
+        },
+        mounted(){
+
+            var getPersonalized= new Promise((resolve, reject) =>{
+                personalized(this).get().then(res => {
+                    this.personalized=res.body.result;
+                    resolve(res.body.result.length)
+                    console.log(res.body.result)
+                });
+            })
+
+            getPersonalized.then((length) =>{
+                if(length>=8){
+                    return
+                }
+                djprogram(this).get().then(res => {
+                    let temp=res.body.result.slice(0,8-length)
+                    this.personalized=this.personalized.concat(temp)
+                    console.log('djprogram',res.body.result)
+                });
+            })
+
+//            personalized(this).get().then(res => {
+//                this.personalized=res.body.result;
+//                console.log('personalized',res.body.result)
+//            });
+//            djprogram(this).get().then(res => {
+//                console.log('djprogram',res.body.result)
+//            });
         },
         components: {
             banner
@@ -568,5 +468,16 @@
         display: block;
         height: 0;
         visibility: hidden;
+    }
+    .u-icn-53 {
+        width: 35px;
+        height: 15px;
+        background-position: -31px -658px;
+    }
+    .m-cvrlst li .dec i {
+        position: relative;
+        top: -1px;
+        margin-right: 3px;
+        vertical-align: middle;
     }
 </style>

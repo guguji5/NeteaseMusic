@@ -32,9 +32,14 @@
 //            var api=this.$store.state.proxyUrl;
 //          因为vue-resource绑定的this必须是当前的上下文，所以得传进去
             banner(this).get().then(res => {
-                console.log(res)
                 this.list = res.body.banners;
             });
+//           也可以这么bind一下，但是，实在是uglify
+//           banner.bind(this)().get()
+//               .then(res => {
+//                console.log(res)
+//                this.list = res.body.banners;
+//            });
 
         },
         components: {

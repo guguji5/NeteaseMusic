@@ -78,3 +78,6 @@ a {
 .u-btn2, .u-btn2 i, .u-btn2 .icn, .u-btni, .u-btni i, .u-tag, .u-tag i, .u-btni-addply .ply {
     background: url(./../image/button2.png) no-repeat 0 9999px;
 }
+.u-icn, .u-title-1 .out .icon {
+    background: url(./../image/icon.png) no-repeat 0 9999px;
+}
