@@ -23,6 +23,7 @@ export default {
 <style>
 @import './style/common.css';
 #app {
-  
+  float: left;
+  width: 100%;
 }
 </style>
