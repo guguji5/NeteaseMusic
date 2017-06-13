@@ -1,6 +1,5 @@
 <template>
   <div id="m-playlist" class="g-bd4 f-cb">
-    <p style="line-height: 280px; font-size: 5rem; text-align: center;" v-if="!list.id">Loading...</p>
     <div class="g-mn4" v-if="list.id">
       <div class="g-mn4c">
         <div class="g-wrap6">
@@ -48,14 +47,14 @@
                     id="cnt_comment_count">{{list.shareCount}}</span>)</i></a>
                 </div>
                 <div class="tags f-cb">
-                  <b>标签：</b>
+                  <b v-if="list.tags.length>0">标签：</b>
                   <a class="u-tag" href="/discover/playlist/?cat=%E5%8D%8E%E8%AF%AD&amp;order=hot"
                      v-for="(i, index) in list.tags"><i>{{i}}</i></a>
                 </div>
-                <p id="album-desc-dot" class="intr f-brk"><b>介绍：</b>
+                <p id="album-desc-dot" class="intr f-brk"><b v-if="list.description!=''">介绍：</b>
                   {{list.description }}
                 </p>
-                <p id="album-desc-more" class="intr f-brk f-hide"><b>介绍：</b>
+                <p id="album-desc-more" class="intr f-brk f-hide"><b v-if="list.description!=''">介绍：</b>
                   {{list.description }}
                 </p>
                 <div class="f-cb"><a id="album-desc-spread" href="javascript:;" class="s-fc7 f-fr">展开<i
@@ -148,7 +147,7 @@
                       <td class="">
                         <div class="text">
                           <!--<a href="/album?id=19480" title="风云-雄霸天下(电影原声大碟)">风云-雄霸天下(电影原声大碟)</a>-->
-                          <router-link :to="{path:'album',query:{id:item.al.id}}" :title="item.al.name">{{item.al.name}}<a v-if="index!=item.ar.length-1">/</a></router-link>
+                          <router-link :to="{path:'album',query:{id:item.al.id}}" :title="item.al.name">{{item.al.name}}</router-link>
                         </div>
                       </td>
                     </tr>
