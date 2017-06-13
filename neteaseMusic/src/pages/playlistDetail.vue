@@ -1,6 +1,5 @@
 <template>
   <div id="m-playlist" class="g-bd4 f-cb">
-    <p style="line-height: 280px; font-size: 5rem; text-align: center;" v-if="!list.id">Loading...</p>
     <div class="g-mn4" v-if="list.id">
       <div class="g-mn4c">
         <div class="g-wrap6">
