@@ -26,7 +26,7 @@
                                 <li v-for="item in personalized">
                                     <div class="u-cover u-cover-1">
                                         <img v-bind:src="item.picUrl">
-                                        <a title="item.name" href="/playlist?id=568857491" class="msk"></a>
+                                        <router-link :to="{path:'playlistDetail',query:{id:item.id}}" :title="item.name" class="msk"></router-link>
                                         <div class="bottom">
                                             <a class="icon-play f-fr" title="播放" href="javascript:;"></a>
                                             <span class="icon-headset"></span>
@@ -35,10 +35,14 @@
                                         </div>
                                     </div>
                                     <p class="dec">
-                                        <a title="item.name" class="tit s-fc0" href="/playlist?id=568857491">
+                                        <!--<a title="item.name" class="tit s-fc0" href="/playlist?id=568857491">-->
+                                            <!--<i class="u-icn u-icn-53" v-if="item.type==1"></i>-->
+                                            <!--{{item.name}}-->
+                                        <!--</a>-->
+                                        <router-link :to="{path:'playlistDetail',query:{id:item.id}}" :title="item.name" class="tit s-fc0">
                                             <i class="u-icn u-icn-53" v-if="item.type==1"></i>
                                             {{item.name}}
-                                        </a>
+                                        </router-link>
                                     </p>
                                 </li>
                                 <!--<li> 留个原版的demo，以备事件绑定啊
@@ -289,7 +293,19 @@
         margin: 8px 0 3px;
         font-size: 14px;
     }
-
+    .u-cover .bottom, .u-cover .msk, .n-musicsd .lst .avatar .msk {
+        background: url(../image/coverall.png) no-repeat;
+    }
+    .u-cover .msk {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .u-cover-1 .msk {
+        background-position: 0 0;
+    }
     .u-cover .bottom {
         position: absolute;
         bottom: 0;
@@ -481,4 +497,5 @@
         margin-right: 3px;
         vertical-align: middle;
     }
+
 </style>
