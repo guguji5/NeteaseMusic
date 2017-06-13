@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/'
+import filters from './service/filters'
 
 Vue.config.productionTip = false
 
@@ -14,4 +15,8 @@ new Vue({
     router,
     template: '<App/>',
     components: {App}
+})
+
+Object.keys(filters).forEach(function (key, index, arr) {
+    Vue.filter(key, filters[key]);
 })

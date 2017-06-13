@@ -30,7 +30,8 @@
                                         <div class="bottom">
                                             <a class="icon-play f-fr" title="播放" href="javascript:;"></a>
                                             <span class="icon-headset"></span>
-                                            <span class="nb">{{item.playCount}}</span>
+                                            <span class="nb" v-if="item.playCount ">{{item.playCount | toWan}}</span>
+                                            <span class="nb" v-else>{{item.program.listenerCount | toWan}}</span>
                                         </div>
                                     </div>
                                     <p class="dec">
