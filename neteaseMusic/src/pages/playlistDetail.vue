@@ -147,7 +147,7 @@
                       <td class="">
                         <div class="text">
                           <!--<a href="/album?id=19480" title="风云-雄霸天下(电影原声大碟)">风云-雄霸天下(电影原声大碟)</a>-->
-                          <router-link :to="{path:'album',query:{id:item.al.id}}" :title="item.al.name">{{item.al.name}}<a v-if="index!=item.ar.length-1">/</a></router-link>
+                          <router-link :to="{path:'album',query:{id:item.al.id}}" :title="item.al.name">{{item.al.name}}</router-link>
                         </div>
                       </td>
                     </tr>
