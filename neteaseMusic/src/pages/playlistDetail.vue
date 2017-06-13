@@ -1,6 +1,5 @@
 <template>
   <div id="m-playlist" class="g-bd4 f-cb">
-    <p style="line-height: 280px; font-size: 5rem; text-align: center;" v-if="!list.id">Loading...</p>
     <div class="g-mn4" v-if="list.id">
       <div class="g-mn4c">
         <div class="g-wrap6">
@@ -123,14 +122,15 @@
                         </div>
                       </td>
                       <td class=" s-fc3"><span class="u-dur ">{{item.dt|MillisecondToDate}}</span>
-                        <div class="opt hshow"><a class="u-icn u-icn-81 icn-add" href="javascript:;" title="添加到播放列表"
-                                                  hidefocus="true" data-res-type="18" :data-res-id="item.id"
-                                                  data-res-action="addto" data-res-from="13"
-                                                  :data-res-data="list.id"></a><span :data-res-id="item.id"
-                                                                                     data-res-type="18"
-                                                                                     data-res-action="fav"
-                                                                                     class="icn icn-fav"
-                                                                                     title="收藏"></span><span
+                        <div class="opt hshow">
+                          <a class="u-icn u-icn-81 icn-add" href="javascript:;" title="添加到播放列表" hidefocus="true"
+                             data-res-type="18" :data-res-id="item.id"
+                             data-res-action="addto" data-res-from="13"
+                             :data-res-data="list.id"></a><span :data-res-id="item.id"
+                                                                data-res-type="18"
+                                                                data-res-action="fav"
+                                                                class="icn icn-fav"
+                                                                title="收藏"></span><span
                           :data-res-id="item.id" data-res-type="18" data-res-action="share" :data-res-name="item.name"
                           :data-res-author="item.singer"
                           :data-res-pic="item.al.picUrl"
@@ -141,14 +141,17 @@
                       <td class="">
                         <div class="text" :title="item.singer"><span :title="item.singer">
                           <!--<a class="" href="/artist?id=6491" hidefocus="true">{{item.singer}}</a>-->
-                           <router-link :to="{path:'artist',query:{id:a.id}}" hidefocus="true" v-for="(a,index) in item.ar">{{a.name}}<a v-if="index!=item.ar.length-1">/</a></router-link>
+                           <router-link :to="{path:'artist',query:{id:a.id}}" hidefocus="true"
+                                        v-for="(a,index) in item.ar">{{a.name}}<a
+                             v-if="index!=item.ar.length-1">/</a></router-link>
                         </span>
                         </div>
                       </td>
                       <td class="">
                         <div class="text">
                           <!--<a href="/album?id=19480" title="风云-雄霸天下(电影原声大碟)">风云-雄霸天下(电影原声大碟)</a>-->
-                          <router-link :to="{path:'album',query:{id:item.al.id}}" :title="item.al.name">{{item.al.name}}<a v-if="index!=item.ar.length-1">/</a></router-link>
+                          <router-link :to="{path:'album',query:{id:item.al.id}}" :title="item.al.name">{{item.al.name}}<a
+                            v-if="index!=item.ar.length-1">/</a></router-link>
                         </div>
                       </td>
                     </tr>
@@ -559,7 +562,7 @@
           value.ar.forEach(function (val, k) {
             value.singer += val.name + '/'
           });
-          value.singer = value.singer.substr(0, value.singer.length-1);
+          value.singer = value.singer.substr(0, value.singer.length - 1);
         })
       });
 
