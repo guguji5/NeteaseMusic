@@ -10,7 +10,6 @@
           <a href="/discover/playlist/?order=new" class="a2" data-order="new">最新</a>
         </div>
       </div>
-      <p style="line-height: 280px; font-size: 5rem; text-align: center;" v-if="!list.length">Loading...</p>
       <ul class="m-cvrlst f-cb" id="m-pl-container">
         <li v-for="(i, index) in list">
           <div class="u-cover u-cover-1">
