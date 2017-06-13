@@ -26,7 +26,7 @@
 <a href="/user/home?id=291551773" class="s-fc7">{{list.creator.nickname}}</a>
 </span>
                   <sup class="u-icn u-icn-84 "></sup>
-                  <span class="time s-fc4">{{list.createTime|timeFilter}}&nbsp;创建</span>
+                  <span class="time s-fc4">{{list.createTime}}&nbsp;创建</span>
                 </div>
                 <div id="content-operation" class="btns f-cb" data-rid="759153394" data-type="13" data-special="0">
                   <a data-res-action="play" data-res-id="759153394" data-res-type="13" href="javascript:;"
@@ -590,7 +590,6 @@
 <script>
 
   import {playlistDetail} from  './../service/getDate';
-  import filter from  '../service/filter';
 
   export default {
     name: 'playlistDetail',
