@@ -141,7 +141,7 @@
                       <td class="">
                         <div class="text" :title="item.singer"><span :title="item.singer">
                           <!--<a class="" href="/artist?id=6491" hidefocus="true">{{item.singer}}</a>-->
-                           <router-link :to="{path:'artist',query:{id:a.id}}" hidefocus="true" v-for="(a,index) in item.ar">{{a.name}}<a v-if="index!=item.ar.length-1">/</a></router-link>
+                           <router-link :to="{path:'artist',query:{id:a.id}}" hidefocus="true" v-for="(a,index) in item.ar" :key="a.id">{{a.name}}<a v-if="index!=item.ar.length-1">/</a></router-link>
                         </span>
                         </div>
                       </td>
