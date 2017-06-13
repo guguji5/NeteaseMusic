@@ -104,7 +104,7 @@
     import {personalized,djprogram} from  './../service/getDate';
 
     export default {
-        name: 'hello',
+        name: 'home',
         data () {
             return {
                 personalized: []
