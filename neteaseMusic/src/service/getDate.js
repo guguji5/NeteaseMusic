@@ -20,5 +20,12 @@ let personalized=function(This){
 //获取主页面上的电台
 let djprogram=This=>This.$resource(apiContext+'personalized/djprogram');
 
+//获取用户歌单
+let playlist = This =>This.$resource(apiContext+'top/{playlist}');
 
-export {banner,personalized,djprogram};
+//获取歌单详情
+let playlistDetail = This =>This.$resource(apiContext+'playlist/{detail}');
+
+
+
+export {banner,personalized,djprogram,playlist,playlistDetail};

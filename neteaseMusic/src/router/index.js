@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import home from '../pages/home'
 import about from '../pages/about'
 import playlist from '../pages/playlist'
+import playlistDetail from '../pages/playlistDetail'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path:'/playlist',
       name:'playlist',
       component:playlist
+    },
+    {
+      path:'/playlistDetail',
+      name:'playlistDetail',
+      component:playlistDetail
     }
   ]
 })
