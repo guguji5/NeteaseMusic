@@ -9,9 +9,9 @@
             <div class="hand" title="展开播放条"></div>
             <div class="wrap" id="g_player" style="margin-left: -498.5px;">
                 <div class="btns">
-                    <a href="javascript:;" @click="test" class="prv" title="上一首(ctrl+←)">上一首</a>
-                    <a href="javascript:;" hidefocus="true" data-action="pause" class="ply j-flag pas" title="播放/暂停(p)">播放/暂停</a>
-                    <a href="javascript:;" hidefocus="true" data-action="next" class="nxt" title="下一首(ctrl+→)">下一首</a>
+                    <a href="javascript:;" @click="prev" class="prv" title="上一首(ctrl+←)">上一首</a>
+                    <a href="javascript:;" class="ply j-flag pas" title="播放/暂停(p)">播放/暂停</a>
+                    <a href="javascript:;" @click="next" class="nxt" title="下一首(ctrl+→)">下一首</a>
                 </div>
                 <div class="head j-flag"><img src="http://p1.music.126.net/h_jIa6jZSuI8gBW6a89Dhg==/16667496765602378.jpg?param=34y34"><a href="/song?id=34780516" hidefocus="true" class="mask"></a></div>
                 <div class="play">
@@ -21,7 +21,7 @@
                             <div class="rdy" style="width: 100%;"></div>
                             <div class="cur" style="width: 35.6378%;"><span class="btn f-tdn f-alpha" id="auto-id-LUEElBI7trq8kQkc"><i></i></span></div>
                         </div>
-                        <span class="j-flag time"><em>00:55</em> / 02:34</span>
+                        <span class="j-flag time"><em>00:55</em> / {{duration}}</span>
                     </div>
                 </div>
                 <div class="oper f-fl">
@@ -53,17 +53,26 @@
         name: 'player',
         data () {
             return {
-                song:null
+
             }
         },
         methods: {
-            test () {
-                this.song.pause();
+            prev(){
+                this.$store.commit('prev');
+                this.$store.dispatch('getMusicUrl',this)
+            },
+            next(){
+                this.$store.commit('next');
+                this.$store.dispatch('getMusicUrl',this)
+            }
+        },
+        computed: {
+            duration () {
+                return this.$store.state.duration
             }
         },
         mounted () {
-            this.song = new Audio('http://m10.music.126.net/20170613230048/2451d0efbbd95109414c0c9b11a3c97c/ymusic/f1ae/0bd1/31a9/5d64960d0cbebc0d089bc85a6ef54680.mp3');
-            this.song.play();
+
         },
         components: {
 

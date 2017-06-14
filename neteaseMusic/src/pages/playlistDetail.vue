@@ -101,9 +101,9 @@
                     <tbody>
                     <tr id="1931211497259431552" class="even " v-for="(item,index) in list.tracks">
                       <td class="left">
-                        <div class="hd "><span data-res-id="193121" data-res-type="18" data-res-action="play"
-                                               data-res-from="13" :data-res-data="list.id"
-                                               class="ply ">&nbsp;</span><span class="num">{{index+1}}</span></div>
+                        <div class="hd ">
+                          <span class="ply" @click="play(item)">&nbsp;</span>
+                          <span class="num">{{index+1}}</span></div>
                       </td>
                       <td class="">
                         <div class="f-cb">
@@ -544,8 +544,14 @@
         list: []
       }
     },
-    methods: {},
-
+    methods: {
+        play(item){
+            this.$store.commit('addQueue',item);
+            console.log(this.$store.state.trackQueue);
+            this.$store.state.trackIndex=this.$store.state.trackQueue.length-1;
+            this.$store.dispatch('getMusicUrl',this)
+        }
+    },
     mounted(){
       playlistDetail(this).get({
         detail: 'detail',
