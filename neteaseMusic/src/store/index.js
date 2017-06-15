@@ -6,12 +6,13 @@ import {typesOf} from './../util/util';
 
 const store = new Vuex.Store({
     state: {
-        trackQueue:[],
-        trackIndex:0,
-        song:null,
-        duration:0,
-        currentTime:0,
-        timer:null
+        trackQueue:[],    //播放菜单
+        trackIndex:0,     //当前唱的第几首歌
+        song:null,        //new audio对象
+        duration:0,       //歌曲的时长
+        currentTime:0,    //当前唱歌的时间
+        timer:null,       //定时器
+        loading:0        //下载进度
     },
     mutations: {
         addQueue(state,item){
@@ -37,12 +38,18 @@ const store = new Vuex.Store({
             }
         },
         prev(state){
-          state.song.pause();
+            if(state.trackQueue.length==0 || state.trackIndex==0) return
+            // state.currentTime=0;
+            // state.song.pause();
             state.trackIndex--;
+            clearInterval(state.timer);
         },
         next(state){
-            state.song.pause();
+            if(state.trackQueue.length==0 ||state.trackIndex==state.trackQueue.length-1) return
+            // state.currentTime=0;
+            // state.song.pause();
             state.trackIndex++;
+            clearInterval(state.timer);
 
         }
     },
@@ -54,9 +61,23 @@ const store = new Vuex.Store({
                          state.song=new Audio(res.body.data[0].url);
                      }else{
                          state.song.src=res.body.data[0].url;
+                         state.currentTime=0;
                      }
+                    state.song.addEventListener('progress', function() {
+                        if(this.buffered.length==1){
+                            var range = 0;
+                            var bf = this.buffered;
+                            var time = this.currentTime;
+                            while(!(bf.start(range) <= time && time <= bf.end(range))) {
+                                range += 1;
+                            }
+                            var loadStartPercentage = bf.start(range);
+                            var loadEndPercentage = bf.end(range);
+                            state.loading = loadEndPercentage - loadStartPercentage;
+                            // console.log(state.loading)
+                        }
+                    });
                     state.duration=state.trackQueue[state.trackIndex].dt;
-                    // state.song.play();//这里play你是mutation的play，而是audio对象的play
                     commit('play')//触发
                     console.log(res);
 

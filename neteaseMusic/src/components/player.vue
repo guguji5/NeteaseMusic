@@ -13,22 +13,21 @@
           <a href="javascript:;" @click="play" class="ply j-flag pas" title="播放/暂停(p)">播放/暂停</a>
           <a href="javascript:;" @click="next" class="nxt" title="下一首(ctrl+→)">下一首</a>
         </div>
-        <div class="head j-flag"><img
-          src="http://p3.music.126.net/Il00DtS3hP6fahyVcc_quA==/1366692955577181.jpg?param=34y34"><a
+        <div class="head j-flag"><img :src="songDetail.al.picUrl"><a
           href="/song?id=406072138" hidefocus="true" class="mask"></a></div>
         <div class="play">
           <div class="j-flag words">
-            <a hidefocus="true" href="/song?id=406072138" class="f-thide name fc1 f-fl" title="songDetail.name">23456</a>
+            <a hidefocus="true" href="/song?id=406072138" class="f-thide name fc1 f-fl" :title="songDetail.name">{{songDetail.name}}</a>
             <a hidefocus="true" href="/mv?id=5401017" class="mv f-fl" title="MV"></a>
             <span class="by f-thide f-fl">
-                <span title="songDetail.singer">
-                  <a class="" href="/artist?id=11760" hidefocus="true">后海大鲨鱼</a>
+                <span :title="songDetail.singer">
+                  <a class="" href="/artist?id=11760" hidefocus="true">{{songDetail.singer}}</a>
                 </span>
               </span>
             <a href="" class="src" title="来自歌手"></a></div>
           <div class="m-pbar">
             <div class="barbg j-flag">
-              <div class="rdy" style="width: 80%;"></div>
+              <div class="rdy" :style="{ width: 100000*loading/duration+'%'}"></div><!--bufferd返回的是秒，duration是毫秒-->
               <div class="cur" :style="{ width: 100*currentTime/duration + '%' }"><span class="btn f-tdn f-alpha z-load"><i style="visibility:hidden"></i></span>
               </div>
             </div>
@@ -200,6 +199,22 @@
       },
       currentTime(){
         return this.$store.state.currentTime;
+      },
+      loading(){
+          return this.$store.state.loading;
+      },
+      songDetail(){
+          if(this.$store.state.trackQueue.length>0){
+              return this.$store.state.trackQueue[this.$store.state.trackIndex];
+          }else{
+              return {
+                  name:'',
+                  singer:'',
+                  al:{
+                      picUrl:''
+                  }
+              }
+          }
       }
     },
     mounted () {
