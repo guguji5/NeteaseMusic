@@ -10,7 +10,8 @@ const store = new Vuex.Store({
         trackIndex:0,
         song:null,
         duration:0,
-        currentTime:0
+        currentTime:0,
+        timer:null
     },
     mutations: {
         addQueue(state,item){
@@ -21,8 +22,17 @@ const store = new Vuex.Store({
         },
         play(state){
             if(state.song.paused){
+                console.log('play')
                 state.song.play();
+                state.timer=setInterval(function(){
+                    state.currentTime+=1000;
+                    if(state.currentTime>state.duration){
+                        state.currentTime=state.duration;
+                    }
+                },1000)
             }else{
+                clearInterval(state.timer);
+                console.log('pause')
                 state.song.pause();
             }
         },
@@ -45,8 +55,9 @@ const store = new Vuex.Store({
                      }else{
                          state.song.src=res.body.data[0].url;
                      }
-                    state.duration=state.trackQueue[state.trackIndex].dt
-                    state.song.play();
+                    state.duration=state.trackQueue[state.trackIndex].dt;
+                    // state.song.play();//这里play你是mutation的play，而是audio对象的play
+                    commit('play')//触发
                     console.log(res);
 
                 })

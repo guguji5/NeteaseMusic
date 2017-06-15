@@ -10,7 +10,7 @@
       <div class="wrap" id="g_player" style="margin-left: -498.5px;">
         <div class="btns">
           <a href="javascript:;" @click="prev" class="prv" title="上一首(ctrl+←)">上一首</a>
-          <a href="javascript:;" class="ply j-flag pas" title="播放/暂停(p)">播放/暂停</a>
+          <a href="javascript:;" @click="play" class="ply j-flag pas" title="播放/暂停(p)">播放/暂停</a>
           <a href="javascript:;" @click="next" class="nxt" title="下一首(ctrl+→)">下一首</a>
         </div>
         <div class="head j-flag"><img
@@ -25,14 +25,14 @@
                   <a class="" href="/artist?id=11760" hidefocus="true">后海大鲨鱼</a>
                 </span>
               </span>
-            <a href="/artist?id=11760&amp;_hash=songlist-406072138" class="src" title="来自歌手"></a></div>
-          <div class="m-pbar" data-action="noop">
-            <div class="barbg j-flag" id="auto-id-gUXlMCkevZBsFOcU">
-              <div class="rdy" style="width: 0%;"></div>
-              <div class="cur" style="width:0%;"><span class="btn f-tdn f-alpha z-load" id="auto-id-HGiArXnndmXFHerX"><i></i></span>
+            <a href="" class="src" title="来自歌手"></a></div>
+          <div class="m-pbar">
+            <div class="barbg j-flag">
+              <div class="rdy" style="width: 80%;"></div>
+              <div class="cur" :style="{ width: 100*currentTime/duration + '%' }"><span class="btn f-tdn f-alpha z-load"><i style="visibility:hidden"></i></span>
               </div>
             </div>
-            <span class="j-flag time"><em>00:55</em> / {{duration}}</span>
+            <span class="j-flag time"><em>{{currentTime | MillisecondToDate}}</em> / {{duration | MillisecondToDate}}</span>
 
           </div>
         </div>
@@ -171,7 +171,10 @@
 </template>
 
 <script>
-
+    import Vue from 'vue'
+    import filters from './../service/filters';
+    Vue.filter('MillisecondToDate', filters['MillisecondToDate']);
+//  这里为啥需要自己定义个filter不能取到main里边的filter
   export default {
     name: 'player',
     data () {
@@ -185,11 +188,18 @@
       next(){
         this.$store.commit('next');
         this.$store.dispatch('getMusicUrl', this)
+      },
+      play(){
+//          console.log(this.$store.state.song.mozFrameBufferLength)
+          this.$store.commit('play');
       }
     },
     computed: {
       duration () {
-        return this.$store.state.duration
+        return this.$store.state.duration;
+      },
+      currentTime(){
+        return this.$store.state.currentTime;
       }
     },
     mounted () {
