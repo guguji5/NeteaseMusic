@@ -107,4 +107,8 @@ export default {
     .m-ft .logo-reward {
         background-position: -60px 0;
     }
+    .m-ft .copy .line {
+        margin: 0 8px 0 10px;
+        color: #c2c2c2;
+    }
 </style>

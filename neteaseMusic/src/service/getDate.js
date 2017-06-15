@@ -26,6 +26,7 @@ let playlist = This =>This.$resource(apiContext+'top/{playlist}');
 //获取歌单详情
 let playlistDetail = This =>This.$resource(apiContext+'playlist/{detail}');
 
+//获取歌曲url
+let musicUrl= This => This.$resource(apiContext+'music/url?id={id}');
 
-
-export {banner,personalized,djprogram,playlist,playlistDetail};
+export {banner,personalized,djprogram,playlist,playlistDetail,musicUrl};

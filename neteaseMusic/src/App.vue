@@ -3,6 +3,7 @@
     <top></top>
     <router-view></router-view>
     <foot></foot>
+    <player></player>
   </div>
 </template>
 
@@ -10,12 +11,13 @@
 
 import top from './components/top'
 import foot from './components/foot'
+import player from './components/player'
 
 export default {
   name: 'app',
   components: {
     top,
-    foot
+    foot, player
   }
 }
 </script>
