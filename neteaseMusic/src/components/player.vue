@@ -106,9 +106,11 @@
           </div>
           <div class="msk2"></div>
           <div class="listlyric j-flag" id="auto-id-GwX1QInW848brZi3">
-            <p class="j-flag" v-if="lyricObject!=''" :data-time="lyric.time" v-for="lyric in lyricObject">
-              {{lyric.text}}</p>
-            <p class="j-flag" >无歌词</p>
+            <div class="position" :style="{ top: VariableHeight + 'px' }">
+              <p v-if="lyricObject!=''" :data-time="lyric.time" v-for="(lyric,index) in lyricObject"  :class="[{ zsel: (currentIndex==lyric.line) }]">
+                {{lyric.text}}</p>
+              <p class="j-flag" v-else>无歌词</p>
+            </div>
           </div>
           <div class="bline bline-1 j-flag" id="auto-id-S1nHGo6kcOHCmmNc">
               <span class="scrol scrol-1 j-flag" hidefocus="true" id="auto-id-WtLt5o8WrU2cbmQc"
@@ -180,6 +182,12 @@
       },
       lyricObject(){
         return this.$store.state.lyricObject;
+      },
+      currentIndex(){
+        return this.$store.state.currentIndex
+      },
+      VariableHeight(){
+        return this.$store.state.VariableHeight
       },
       songDetail(){
           if(this.$store.state.trackQueue.length>0){
@@ -1785,6 +1793,11 @@
     height: 219px;
     width: 354px;
     overflow: hidden;
+  }
+  .m-playbar .position {
+    position: relative;
+    height: 219px;
+    width: 354px;
   }
 
   .m-playbar .listlyric p {

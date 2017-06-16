@@ -13,7 +13,9 @@ const store = new Vuex.Store({
     currentTime: 0,    //当前唱歌的时间
     timer: null,       //定时器
     loading: 0,        //下载进度
-    lyricObject: {},
+    lyricObject: {},   //歌词
+    currentIndex:0,    //当前显示歌词
+    VariableHeight:0   //歌词高度
   },
   mutations: {
     addQueue(state, item){
@@ -32,7 +34,8 @@ const store = new Vuex.Store({
       console.log(state.proxyUrl)
     },
     play(state){
-      clearInterval(state.timer)
+      clearInterval(state.timer);
+      state.VariableHeight=0;
       if (state.song.paused) {
         console.log('play')
         state.song.play()
@@ -40,6 +43,20 @@ const store = new Vuex.Store({
           state.currentTime += 1000
           if (state.currentTime > state.duration) {
             state.currentTime = state.duration
+          }
+          var currentIndex = 0;
+          for (var i in state.lyricObject) {
+            if (i <= parseInt(state.currentTime)/1000) {
+              // 要高亮这句歌词  lyricObj[i]
+              currentIndex = state.lyricObject[i].line;
+
+            } else {
+              break;
+            }
+          }
+          state.currentIndex = currentIndex;
+          if(state.currentIndex>=3){
+            state.VariableHeight = (parseInt(state.currentIndex) - 3) * (-32);
           }
         }, 1000)
       } else {
@@ -103,6 +120,7 @@ const store = new Vuex.Store({
               state.lyricObject = ""
             }
           })
+
       }
     }
   }
