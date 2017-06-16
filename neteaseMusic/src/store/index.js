@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-import { musicUrl } from './../service/getDate'
-import { typesOf } from './../util/util'
+import { musicUrl,lyric } from './../service/getDate'
+import { typesOf,parseLyric } from './../util/util'
 
 const store = new Vuex.Store({
   state: {
@@ -12,7 +12,8 @@ const store = new Vuex.Store({
     duration: 0,       //歌曲的时长
     currentTime: 0,    //当前唱歌的时间
     timer: null,       //定时器
-    loading: 0        //下载进度
+    loading: 0,        //下载进度
+    lyricObject: {},
   },
   mutations: {
     addQueue(state, item){
@@ -88,7 +89,20 @@ const store = new Vuex.Store({
           commit('play')//触发
           console.log(res)
 
-        })
+        }),
+          lyric(This).get({'id': state.trackQueue[state.trackIndex].id}).then(function (res) {
+           // console.log(res.body.lrc)
+            if (res.body.lrc && res.body.lrc.lyric) {
+              var lyricObj = parseLyric(res.body.lrc.lyric);
+              var line = 0;
+              for (var i in lyricObj) {
+                lyricObj[i].line = line++;
+              }
+              state.lyricObject = lyricObj;
+            } else {
+              state.lyricObject = ""
+            }
+          })
       }
     }
   }

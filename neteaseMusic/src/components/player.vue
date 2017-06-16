@@ -106,8 +106,8 @@
           </div>
           <div class="msk2"></div>
           <div class="listlyric j-flag" id="auto-id-GwX1QInW848brZi3">
-            <!--<p class="j-flag" v-if="lyricObject!=''" :data-time="lyric.time" v-for="lyric in lyricObject">-->
-              <!--{{lyric.text}}</p>-->
+            <p class="j-flag" v-if="lyricObject!=''" :data-time="lyric.time" v-for="lyric in lyricObject">
+              {{lyric.text}}</p>
             <p class="j-flag" >无歌词</p>
           </div>
           <div class="bline bline-1 j-flag" id="auto-id-S1nHGo6kcOHCmmNc">
@@ -167,6 +167,9 @@
       },
       trackIndex(){
         return this.$store.state.trackIndex;
+      },
+      lyricObject(){
+        return this.$store.state.lyricObject;
       },
       songDetail(){
           if(this.$store.state.trackQueue.length>0){
