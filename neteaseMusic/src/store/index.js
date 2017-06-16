@@ -34,7 +34,8 @@ const store = new Vuex.Store({
       console.log(state.proxyUrl)
     },
     play(state){
-      clearInterval(state.timer)
+      clearInterval(state.timer);
+      state.VariableHeight=0;
       if (state.song.paused) {
         console.log('play')
         state.song.play()
