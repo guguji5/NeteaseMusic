@@ -42,9 +42,9 @@
           <a href="javascript:;" hidefocus="true" data-action="share" class="icn icn-share" title="分享">分享</a>
         </div>
         <div class="ctrl f-fl f-pr j-flag">
-          <div class="m-vol" style="visibility:hidden;" id="auto-id-sV8D5nXxNA8tcIPX">
+          <div class="m-vol" style="visibility:hidden;">
             <div class="barbg"></div>
-            <div class="vbg j-t" id="auto-id-bRHgLaBChatSILFT">
+            <div class="vbg j-t">
               <div class="curr j-t" style="height: 74.4px;"></div>
               <span class="btn f-alpha j-t" style="top: 16.2px;"></span></div>
           </div>
@@ -146,7 +146,17 @@
           this.$store.commit('play');
       },
       jump(e){
-          console.log(e)
+          let parent=document.getElementsByClassName('play')[0];
+          let track=document.getElementsByClassName('barbg')[0];
+
+          let parentLeft = parent.offsetLeft;
+
+          let progress=e.offsetX-parentLeft;
+          let tracklong=track.offsetWidth;
+
+          console.log(parentLeft,e.offsetX);
+          console.log(progress,tracklong,progress/tracklong);
+
       },
       isVisible(){
         this.isDisplay = !this.isDisplay;
