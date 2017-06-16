@@ -52,19 +52,19 @@
           <a href="javascript:;" hidefocus="true" data-action="mode" class="icn icn-loop" title="循环"></a>
           <span class="add f-pr">
 <span class="tip" style="display:none;">已添加到播放列表</span>
-<a href="javascript:;" title="播放列表" hidefocus="true" data-action="panel" class="icn icn-list s-fc3">3</a>
+<a href="javascript:;" title="播放列表" hidefocus="true" data-action="panel" class="icn icn-list s-fc3" @click="isVisible">{{trackQueue.length}}</a>
 </span>
           <div class="tip tip-1" style="display:none;">循环</div>
         </div>
       </div>
-      <div class="list" id="g_playlist">
+      <div class="list" :class="{ is_display: isDisplay }" id="g_playlist">
         <div class="listhd">
           <div class="listhdc">
-            <h4>播放列表(<span class="j-flag">4</span>)</h4>
+            <h4>播放列表(<span class="j-flag">{{trackQueue.length}}</span>)</h4>
             <a href="javascript:;" class="addall" data-action="likeall"><span class="ico ico-add"></span>收藏全部</a><span
             class="line"></span>
             <a href="javascript:;" class="clear" data-action="clear"><span class="ico icn-del"></span>清除</a>
-            <p class="lytit f-ff0 f-thide j-flag">123456</p>
+            <p class="lytit f-ff0 f-thide j-flag">{{songDetail.name}}</p>
             <span class="close" data-action="close">关闭</span>
           </div>
         </div>
@@ -74,11 +74,11 @@
           <div class="msk"></div>
           <div class="listbdc j-flag" id="auto-id-Nk9r1bFA8yVZLR8R">
             <ul class="f-cb">
-              <li class="z-sel" data-id="406072138" data-action="play">
+              <li v-if="trackQueue.length>0" :class="[{ zsel: (trackIndex==index) }]" data-id="406072138" data-action="play" v-for="(item,index) in trackQueue">
                 <div class="col col-1">
                   <div class="playicn"></div>
                 </div>
-                <div class="col col-2">心要野</div>
+                <div class="col col-2">{{item.name}}</div>
                 <div class="col col-3">
                   <div class="icns"><i class="ico icn-del" title="删除" data-id="406072138"
                                        data-action="delete">删除</i><i class="ico ico-dl" title="下载" data-id="406072138"
@@ -86,63 +86,13 @@
                     class="ico ico-share" title="分享" data-id="406072138" data-action="share">分享</i><i
                     class="j-t ico ico-add" title="收藏" data-id="406072138" data-action="like">收藏</i></div>
                 </div>
-                <div class="col col-4"><span title="后海大鲨鱼"><a class="" href="/artist?id=11760"
-                                                              hidefocus="true">后海大鲨鱼</a></span></div>
-                <div class="col col-5">04:36</div>
+                <div class="col col-4"><span :title="item.singer"><a class="" href="/artist?id=11760"
+                                                              hidefocus="true">{{item.singer}}</a></span></div>
+                <div class="col col-5">{{item.dt | MillisecondToDate}}</div>
                 <div class="col col-6"><a href="/artist?id=11760&amp;_hash=songlist-406072138" class="ico ico-src"
                                           title="来自歌手" data-action="link">来源</a></div>
               </li>
-              <li data-id="238644" data-action="play">
-                <div class="col col-1"></div>
-                <div class="col col-2">痒</div>
-                <div class="col col-3">
-                  <div class="icns"><i class="ico icn-del" title="删除" data-id="238644" data-action="delete">删除</i><i
-                    class="ico ico-dl" title="下载" data-id="238644" data-action="download">下载</i><i
-                    class="ico ico-share" title="分享" data-id="238644" data-action="share">分享</i><i
-                    class="j-t ico ico-add" title="收藏" data-id="238644" data-action="like">收藏</i></div>
-                </div>
-                <div class="col col-4"><span title="黄龄"><a class="" href="/artist?id=7890"
-                                                           hidefocus="true">黄龄</a></span></div>
-                <div class="col col-5">03:45</div>
-                <div class="col col-6"><a href="/playlist?id=736058821&amp;_hash=songlist-238644" class="ico ico-src"
-                                          title="来自歌单" data-action="link">来源</a></div>
-              </li>
-              <li data-id="185920" data-action="play">
-                <div class="col col-1"></div>
-                <div class="col col-2">珊瑚海</div>
-                <div class="col col-3">
-                  <div class="icns"><i class="ico icn-del" title="删除" data-id="185920" data-action="delete">删除</i><i
-                    class="ico ico-dl" title="下载" data-id="185920" data-action="download">下载</i><i
-                    class="ico ico-share" title="分享" data-id="185920" data-action="share">分享</i><i
-                    class="j-t ico ico-add" title="收藏" data-id="185920" data-action="like">收藏</i></div>
-                </div>
-                <div class="col col-4"><span title="周杰伦/梁心颐"><a class="" href="/artist?id=6452"
-                                                                hidefocus="true">周杰伦</a>/<a class=""
-                                                                                            href="/artist?id=8677"
-                                                                                            hidefocus="true">梁心颐</a></span>
-                </div>
-                <div class="col col-5">04:15</div>
-                <div class="col col-6"><a href="/playlist?id=736058821&amp;_hash=songlist-185920" class="ico ico-src"
-                                          title="来自歌单" data-action="link">来源</a></div>
-              </li>
-              <li data-id="327515" data-action="play">
-                <div class="col col-1"></div>
-                <div class="col col-2">最爱的人伤我最深</div>
-                <div class="col col-3">
-                  <div class="icns"><i class="ico icn-del" title="删除" data-id="327515" data-action="delete">删除</i><i
-                    class="ico ico-dl" title="下载" data-id="327515" data-action="download">下载</i><i
-                    class="ico ico-share" title="分享" data-id="327515" data-action="share">分享</i><i
-                    class="j-t ico ico-add" title="收藏" data-id="327515" data-action="like">收藏</i></div>
-                </div>
-                <div class="col col-4"><span title="张惠妹/张雨生"><a class="" href="/artist?id=10559"
-                                                                hidefocus="true">张惠妹</a>/<a class=""
-                                                                                            href="/artist?id=6459"
-                                                                                            hidefocus="true">张雨生</a></span>
-                </div>
-                <div class="col col-5">05:02</div>
-                <div class="col col-6"><a href="/playlist?id=736058821&amp;_hash=songlist-327515" class="ico ico-src"
-                                          title="来自歌单" data-action="link">来源</a></div>
-              </li>
+
             </ul>
           </div>
           <div class="bline j-flag" id="auto-id-cnKoPGHzCSkL1oiX"><span class="scrol" hidefocus="true"
@@ -179,7 +129,9 @@
   export default {
     name: 'player',
     data () {
-      return {}
+      return {
+        isDisplay:true
+      }
     },
     methods: {
       prev(){
@@ -195,6 +147,9 @@
       },
       jump(e){
           console.log(e)
+      },
+      isVisible(){
+        this.isDisplay = !this.isDisplay;
       }
     },
     computed: {
@@ -206,6 +161,12 @@
       },
       loading(){
           return this.$store.state.loading;
+      },
+      trackQueue(){
+        return this.$store.state.trackQueue;
+      },
+      trackIndex(){
+        return this.$store.state.trackIndex;
       },
       songDetail(){
           if(this.$store.state.trackQueue.length>0){
@@ -1403,7 +1364,6 @@
   }
 
   .m-playbar .list {
-    display: none;
     position: absolute;
     left: 50%;
     bottom: 47px;
@@ -1413,6 +1373,9 @@
     height: 301px;
     margin-left: -493px;
     _marign-left: -491px;
+  }
+  .is_display{
+    display: none;
   }
 
   .m-playbar .listhd, .m-playbar .listbd {
@@ -1608,7 +1571,7 @@
     width: 100%;
   }
 
-  .m-playbar .list li.z-sel {
+  .m-playbar .list li.zsel {
     background-color: rgba(0, 0, 0, 0.3);
     _background-color: #202020;
   }
@@ -1627,7 +1590,7 @@
     width: 10px;
   }
 
-  .m-playbar .list li:hover .col, .m-playbar .list li:hover .col a, .m-playbar .list li:hover .col a:hover, .m-playbar .list li.z-sel .col, .m-playbar .list li.z-sel .col a, .m-playbar .list li.z-sel .col a:hover {
+  .m-playbar .list li:hover .col, .m-playbar .list li:hover .col a, .m-playbar .list li:hover .col a:hover, .m-playbar .list li.zsel .col, .m-playbar .list li.zsel .col a, .m-playbar .list li.zsel .col a:hover {
     color: #fff;
   }
 
@@ -1639,7 +1602,7 @@
     background-position: -182px 0;
   }
 
-  .m-playbar .list li.z-sel .playicn, .m-playbar .list li:hover .icns, .m-playbar .list li.z-hover1 .icns {
+  .m-playbar .list li.zsel .playicn, .m-playbar .list li:hover .icns, .m-playbar .list li.z-hover1 .icns {
     display: block;
   }
 
@@ -1825,7 +1788,7 @@
     transition: color 0.7s linear;
   }
 
-  .m-playbar .listlyric p.z-sel {
+  .m-playbar .listlyric p.zsel {
     color: #fff;
     font-size: 14px;
     -webkit-transition: color 0.7s linear;
