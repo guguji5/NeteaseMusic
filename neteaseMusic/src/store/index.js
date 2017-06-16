@@ -20,7 +20,7 @@ const store = new Vuex.Store({
           return val.id == item.id
         }))) {
         state.trackQueue.push(item)
-
+        state.trackIndex=state.trackQueue.length-1;
       }else{
         // console.log(state.trackQueue.indexOf(item));
         state.trackIndex = state.trackQueue.indexOf(item)
@@ -31,6 +31,7 @@ const store = new Vuex.Store({
       console.log(state.proxyUrl)
     },
     play(state){
+      clearInterval(state.timer)
       if (state.song.paused) {
         console.log('play')
         state.song.play()
@@ -41,15 +42,12 @@ const store = new Vuex.Store({
           }
         }, 1000)
       } else {
-        clearInterval(state.timer)
         console.log('pause')
         state.song.pause()
       }
     },
     prev(state){
       if (state.trackQueue.length == 0 || state.trackIndex == 0) return
-      // state.currentTime=0;
-      // state.song.pause();
       state.trackIndex--
       clearInterval(state.timer)
     },

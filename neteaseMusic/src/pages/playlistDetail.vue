@@ -547,8 +547,6 @@
     methods: {
         play(item){
             this.$store.commit('addQueue',item);
-            console.log(this.$store.state.trackQueue);
-            this.$store.state.trackIndex=this.$store.state.trackQueue.length-1;
             this.$store.dispatch('getMusicUrl',this)
         }
     },

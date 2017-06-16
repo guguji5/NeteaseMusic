@@ -116,7 +116,7 @@
                 personalized(this).get().then(res => {
                     this.personalized=res.body.result;
                     resolve(res.body.result.length)
-                    console.log(res.body.result)
+//                    console.log(res.body.result)
                 });
             })
 
@@ -127,7 +127,7 @@
                 djprogram(this).get().then(res => {
                     let temp=res.body.result.slice(0,8-length)
                     this.personalized=this.personalized.concat(temp)
-                    console.log('djprogram',res.body.result)
+//                    console.log('djprogram',res.body.result)
                 });
             })
 
