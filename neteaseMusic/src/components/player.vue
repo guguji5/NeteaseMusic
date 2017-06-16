@@ -27,8 +27,10 @@
             <a href="" class="src" title="来自歌手"></a></div>
           <div class="m-pbar">
             <div class="barbg j-flag">
-              <div class="rdy" :style="{ width: 100000*loading/duration+'%'}"></div><!--bufferd返回的是秒，duration是毫秒-->
-              <div class="cur" :style="{ width: 100*currentTime/duration + '%' }"><span class="btn f-tdn f-alpha z-load"><i style="visibility:hidden"></i></span>
+              <div class="rdy" :style="{ width: 100000*loading/duration+'%'}" @click="jump"></div><!--bufferd返回的是秒，duration是毫秒-->
+              <div class="cur" :style="{ width: 100*currentTime/duration + '%' }"><span class="btn f-tdn f-alpha z-load">
+                <i :style="{visibility: loading>0 ? 'hidden' : 'visible'}"></i><!--等待转圈的效果-->
+              </span>
               </div>
             </div>
             <span class="j-flag time"><em>{{currentTime | MillisecondToDate}}</em> / {{duration | MillisecondToDate}}</span>
@@ -189,8 +191,10 @@
         this.$store.dispatch('getMusicUrl', this)
       },
       play(){
-//          console.log(this.$store.state.song.mozFrameBufferLength)
           this.$store.commit('play');
+      },
+      jump(e){
+          console.log(e)
       }
     },
     computed: {
