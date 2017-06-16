@@ -1403,7 +1403,7 @@
   }
 
   .m-playbar .list {
-    position: absolute;
+    /*position: absolute;*/
     left: 50%;
     bottom: 47px;
     _bottom: 46px;
