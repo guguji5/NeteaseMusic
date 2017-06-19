@@ -75,8 +75,16 @@ const store = new Vuex.Store({
       clearInterval(state.timer)
     },
     jump(state,per){
-        state.currentTime=state.duration*per;
+        // state.currentTime=state.duration*per;
         state.song.currentTime=Math.floor(state.currentTime/1000);
+    },
+    drag(state,per){
+        //drag和jump的不同是drag只控制进度条的长短。而jump不进控制进度条的长短还切了歌的进度。
+        //因为所有改变state的事件必须注册在这里。所以就定义了个这个事件
+        //思考了一下，还是把控制进度条的事件和歌曲长短的事件分开了
+        if(per<=0) per=0;
+        if(per>=1) per=1;
+        state.currentTime=state.duration*per;
     }
   },
   actions: {
