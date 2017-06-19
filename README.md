@@ -2,7 +2,7 @@
 
 > guguji's music demo
 
-这个demo旨在联系vue.js,尝试用vue重构网易云音乐pc版。后台接口是从网上找的开源的[网易云音乐的api](https://binaryify.github.io/NeteaseCloudMusicApi)。
+这个demo旨在练习vue.js,尝试用vue.js重构网易云音乐pc版。后台接口是从网上找的开源的[网易云音乐的api](https://binaryify.github.io/NeteaseCloudMusicApi)。
 下载到本地并执行`node app`然后监听localhost:3000端口即可访问。
 
 ## 安装
