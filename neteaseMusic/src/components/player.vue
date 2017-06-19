@@ -49,7 +49,7 @@
               <span class="btn f-alpha j-t" style="top: 16.2px;"></span></div>
           </div>
           <a href="javascript:;" hidefocus="true" data-action="volume" class="icn icn-vol"></a>
-          <a href="javascript:;" hidefocus="true" data-action="mode" class="icn icn-loop" title="循环"></a>
+          <a href="javascript:;" @click="test" class="icn icn-loop" title="循环"></a>
           <span class="add f-pr">
 <span class="tip" style="display:none;">已添加到播放列表</span>
 <a href="javascript:;" title="播放列表" hidefocus="true" data-action="panel" class="icn icn-list s-fc3" @click="isVisible">{{trackQueue.length}}</a>
@@ -106,11 +106,9 @@
           </div>
           <div class="msk2"></div>
           <div class="listlyric j-flag" id="auto-id-GwX1QInW848brZi3">
-            <div class="position" :style="{ top: VariableHeight + 'px' }">
-              <p v-if="lyricObject!=''" :data-time="lyric.time" v-for="(lyric,index) in lyricObject"  :class="[{ zsel: (currentIndex==lyric.line) }]">
-                {{lyric.text}}</p>
-              <p class="j-flag" v-else>无歌词</p>
-            </div>
+            <p class="j-flag" v-if="lyricObject!=''" :data-time="lyric.time" v-for="lyric in lyricObject">
+              {{lyric.text}}</p>
+            <p class="j-flag" >无歌词</p>
           </div>
           <div class="bline bline-1 j-flag" id="auto-id-S1nHGo6kcOHCmmNc">
               <span class="scrol scrol-1 j-flag" hidefocus="true" id="auto-id-WtLt5o8WrU2cbmQc"
@@ -136,6 +134,9 @@
       }
     },
     methods: {
+      test(){
+      //一些方法可以在这里测试
+      },
       prev(){
         this.$store.commit('prev');
         this.$store.dispatch('getMusicUrl', this)
@@ -150,15 +151,14 @@
       jump(e){
           let parent=document.getElementsByClassName('play')[0];
           let track=document.getElementsByClassName('barbg')[0];
+          let outParent=document.getElementById('g_player');
 
-          let parentLeft = parent.offsetLeft;
+          let parentLeft = parent.offsetLeft+outParent.offsetLeft;   //两层查找，到left的距离
 
-          let progress=e.offsetX-parentLeft;
+          let progress=e.pageX-parentLeft-2;
           let tracklong=track.offsetWidth;
-
-          console.log(parentLeft,e.offsetX);
-          console.log(progress,tracklong,progress/tracklong);
-
+          console.log(progress,tracklong)
+          this.$store.commit('jump',progress/tracklong)
       },
       isVisible(){
         this.isDisplay = !this.isDisplay;
@@ -183,12 +183,12 @@
       lyricObject(){
         return this.$store.state.lyricObject;
       },
-      currentIndex(){
-        return this.$store.state.currentIndex
-      },
-      VariableHeight(){
-        return this.$store.state.VariableHeight
-      },
+        currentIndex(){
+            return this.$store.state.currentIndex
+        },
+        VariableHeight(){
+            return this.$store.state.VariableHeight
+        },
       songDetail(){
           if(this.$store.state.trackQueue.length>0){
               return this.$store.state.trackQueue[this.$store.state.trackIndex];
@@ -1793,11 +1793,6 @@
     height: 219px;
     width: 354px;
     overflow: hidden;
-  }
-  .m-playbar .position {
-    position: relative;
-    height: 219px;
-    width: 354px;
   }
 
   .m-playbar .listlyric p {

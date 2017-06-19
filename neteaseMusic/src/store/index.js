@@ -9,8 +9,8 @@ const store = new Vuex.Store({
     trackQueue: [],    //播放菜单
     trackIndex: 0,     //当前唱的第几首歌
     song: null,        //new audio对象
-    duration: 0,       //歌曲的时长
-    currentTime: 0,    //当前唱歌的时间
+    duration: 0,       //歌曲的时长   单位是ms
+    currentTime: 0,    //当前唱歌的时间   单位是ms
     timer: null,       //定时器
     loading: 0,        //下载进度
     lyricObject: {},   //歌词
@@ -71,11 +71,12 @@ const store = new Vuex.Store({
     },
     next(state){
       if (state.trackQueue.length == 0 || state.trackIndex == state.trackQueue.length - 1) return
-      // state.currentTime=0;
-      // state.song.pause();
       state.trackIndex++
       clearInterval(state.timer)
-
+    },
+    jump(state,per){
+        state.currentTime=state.duration*per;
+        state.song.currentTime=Math.floor(state.currentTime/1000);
     }
   },
   actions: {
@@ -99,7 +100,6 @@ const store = new Vuex.Store({
               var loadStartPercentage = bf.start(range)
               var loadEndPercentage = bf.end(range)
               state.loading = loadEndPercentage - loadStartPercentage
-              // console.log(state.loading)
             }
           })
           state.duration = state.trackQueue[state.trackIndex].dt
