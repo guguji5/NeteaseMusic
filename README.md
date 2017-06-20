@@ -10,7 +10,7 @@
 ## 安装
 
 ``` bash
-#down repository
+#download repository
 git clone https://github.com/guguji5/NeteaseMusic.git
 
 #switch file catalog
