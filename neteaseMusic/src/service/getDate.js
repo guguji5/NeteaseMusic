@@ -32,4 +32,10 @@ let musicUrl= This => This.$resource(apiContext+'music/url?id={id}');
 //获取歌词
 let lyric= This => This.$resource(apiContext+'lyric?id={id}');
 
-export {banner,personalized,djprogram,playlist,playlistDetail,musicUrl,lyric};
+//获取热门歌手
+let hotArtists= This => This.$resource(apiContext+'top/{artists}');
+
+//获取歌手详情
+let artistDetail = This =>This.$resource(apiContext+'artists?id={id}');
+
+export {banner,personalized,djprogram,playlist,playlistDetail,musicUrl,lyric,hotArtists,artistDetail};
