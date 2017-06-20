@@ -9,8 +9,8 @@ const store = new Vuex.Store({
     trackQueue: [],    //播放菜单
     trackIndex: 0,     //当前唱的第几首歌
     song: null,        //new audio对象
-    duration: 0,       //歌曲的时长
-    currentTime: 0,    //当前唱歌的时间
+    duration: 0,       //歌曲的时长   单位是ms
+    currentTime: 0,    //当前唱歌的时间   单位是ms
     timer: null,       //定时器
     loading: 0,        //下载进度
     lyricObject: {},   //歌词
@@ -71,11 +71,20 @@ const store = new Vuex.Store({
     },
     next(state){
       if (state.trackQueue.length == 0 || state.trackIndex == state.trackQueue.length - 1) return
-      // state.currentTime=0;
-      // state.song.pause();
       state.trackIndex++
       clearInterval(state.timer)
-
+    },
+    jump(state,per){
+        // state.currentTime=state.duration*per;
+        state.song.currentTime=Math.floor(state.currentTime/1000);
+    },
+    drag(state,per){
+        //drag和jump的不同是drag只控制进度条的长短。而jump不进控制进度条的长短还切了歌的进度。
+        //因为所有改变state的事件必须注册在这里。所以就定义了个这个事件
+        //思考了一下，还是把控制进度条的事件和歌曲长短的事件分开了
+        if(per<=0) per=0;
+        if(per>=1) per=1;
+        state.currentTime=state.duration*per;
     }
   },
   actions: {
@@ -99,7 +108,6 @@ const store = new Vuex.Store({
               var loadStartPercentage = bf.start(range)
               var loadEndPercentage = bf.end(range)
               state.loading = loadEndPercentage - loadStartPercentage
-              // console.log(state.loading)
             }
           })
           state.duration = state.trackQueue[state.trackIndex].dt
