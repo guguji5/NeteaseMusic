@@ -58,7 +58,12 @@
           </router-link>
         </li>
         <li><a><em>主播电台</em></a></li>
-        <li><a><em>歌手</em></a></li>
+        <!--<li><a><em>歌手</em></a></li>-->
+        <li>
+          <router-link to="artist" @click='isSubNav=false' class="z-slt">
+            <em>歌手</em>
+          </router-link>
+        </li>
         <li><a><em>新碟上架</em></a></li>
       </ul>
     </div>
