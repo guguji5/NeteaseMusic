@@ -234,7 +234,7 @@
     mounted(){
       hotArtists(this).get({
         artists: 'artists',
-        limit: 50,
+        limit: 80,
         offset: 0
       }).then(res => {
 //        console.log(res)

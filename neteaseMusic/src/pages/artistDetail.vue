@@ -41,7 +41,7 @@
                       <tr id="" class="even" v-for=" (item,index) in list.hotSongs">
                         <td class="w1">
                           <div class="hd">
-                            <span :data-res-id="item.id" data-res-type="18" data-res-action="play" data-res-from="2" :data-res-data="item.ar[0].id" class="ply ">&nbsp;</span>
+                            <span @click="play(item)" :data-res-id="item.id" data-res-type="18" data-res-action="play" data-res-from="2" :data-res-data="item.ar[0].id" class="ply ">&nbsp;</span>
                             <span class="num">{{index+1}}</span>
                           </div>
                         </td>
@@ -103,10 +103,10 @@
       }
     },
     methods: {
-//      play(item){
-//        this.$store.commit('addQueue', item)
-//        this.$store.dispatch('getMusicUrl', this)
-//      }
+      play(item){
+        this.$store.commit('addQueue', item)
+        this.$store.dispatch('getMusicUrl', this)
+      }
     },
     mounted(){
       artistDetail(this).get({'id': this.$route.query.id}).then(function (res) {
