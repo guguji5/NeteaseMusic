@@ -46,7 +46,6 @@
                     <a href="javascript:;" hidefocus="true" data-action="share" class="icn icn-share" title="分享">分享</a>
                 </div>
                 <div class="ctrl f-fl f-pr j-flag">
-
                     <div class="m-vol" style="visibility:hidden;" id="auto-id-sV8D5nXxNA8tcIPX">
                         <div class="barbg"></div>
                         <div class="vbg j-t" id="auto-id-bRHgLaBChatSILFT">
@@ -111,7 +110,7 @@
                         </ul>
                     </div>
                     <div class="bline j-flag" id="auto-id-cnKoPGHzCSkL1oiX"><span class="scrol" hidefocus="true"
-                                                                                  style="height: 260px; display: none; top: 0px;"></span>
+                                                                                  style="height: 30px; display: block; top: 0px;"></span>
                     </div>
                     <div class="ask j-flag" id="auto-id-52msadNJ3oUr4IXg">
                         <a class="ico ico-ask"></a>
@@ -121,9 +120,17 @@
                     </div>
                     <div class="msk2"></div>
                     <div class="listlyric j-flag" id="auto-id-GwX1QInW848brZi3">
-                        <p class="j-flag" v-if="lyricObject!=''" :data-time="lyric.time" v-for="lyric in lyricObject">
-                            {{lyric.text}}</p>
-                        <p class="j-flag">无歌词</p>
+
+                        <div class="position" :style="{ top: VariableHeight + 'px' }">
+                            <p v-if="lyricObject!=''" :data-time="lyric.time" v-for="(lyric,index) in lyricObject"  :class="[{ zsel: (currentIndex==lyric.line) }]">
+                                {{lyric.text}}</p>
+                            <p class="j-flag" v-else>无歌词</p>
+                        </div>
+                        <!---->
+                        <!---->
+                        <!--<p class="j-flag" v-if="lyricObject!=''" :data-time="lyric.time" v-for="lyric in lyricObject">-->
+                            <!--{{lyric.text}}</p>-->
+                        <!--<p class="j-flag">无歌词</p>-->
                     </div>
                     <div class="bline bline-1 j-flag" id="auto-id-S1nHGo6kcOHCmmNc">
               <span class="scrol scrol-1 j-flag" hidefocus="true" id="auto-id-WtLt5o8WrU2cbmQc"
