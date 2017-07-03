@@ -28,8 +28,7 @@
                   <span class="time s-fc4">{{list.createTime | timeformat}}&nbsp;创建</span>
                 </div>
                 <div id="content-operation" class="btns f-cb" :data-rid="list.id" data-type="13" data-special="0">
-                  <a data-res-action="play" :data-res-id="list.id" data-res-type="13" href="javascript:;"
-                     class="u-btn2 u-btn2-2 u-btni-addply f-fl" hidefocus="true" title="播放"><i><em
+                  <a href="javascript:;" class="u-btn2 u-btn2-2 u-btni-addply f-fl" title="播放" @click="allin"><i><em
                     class="ply"></em>播放</i></a>
                   <a data-res-action="addto" :data-res-id="list.id" data-res-type="13" href="javascript:;"
                      class="u-btni u-btni-add" hidefocus="true" title="添加到播放列表"></a>
@@ -178,7 +177,11 @@
     methods: {
         play(item){
             this.$store.commit('addQueue',item);
-            this.$store.dispatch('getMusicUrl',this)
+            this.$store.dispatch('getMusicUrl')
+        },
+        allin(){
+            this.$store.commit('addAll',this.list.tracks);
+            this.$store.dispatch('getMusicUrl')
         }
     },
     mounted(){

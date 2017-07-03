@@ -9,7 +9,7 @@ import filters from './service/filters'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+window.vm=new Vue({
     el: '#app',
     store,
     router,

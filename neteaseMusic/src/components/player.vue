@@ -46,14 +46,15 @@
                     <a href="javascript:;" hidefocus="true" data-action="share" class="icn icn-share" title="分享">分享</a>
                 </div>
                 <div class="ctrl f-fl f-pr j-flag">
-                    <div class="m-vol" style="visibility:hidden;">
+
+                    <div class="m-vol" style="visibility:hidden;" id="auto-id-sV8D5nXxNA8tcIPX">
                         <div class="barbg"></div>
-                        <div class="vbg j-t">
+                        <div class="vbg j-t" id="auto-id-bRHgLaBChatSILFT">
                             <div class="curr j-t" style="height: 74.4px;"></div>
                             <span class="btn f-alpha j-t" style="top: 16.2px;"></span></div>
                     </div>
-                    <a href="javascript:;" hidefocus="true" data-action="volume" class="icn icn-vol"></a>
-                    <a href="javascript:;" @click="test" class="icn icn-loop" title="循环"></a>
+                    <a href="javascript:;" hidefocus="true"  class="icn icn-vol"></a>
+                    <a href="javascript:;" @click="loopChange" class="icn" v-bind:class="loopStyle" title="循环"></a>
                     <span class="add f-pr">
                     <span class="tip" style="display:none;">已添加到播放列表</span>
                     <a href="javascript:;" title="播放列表" hidefocus="true" data-action="panel" class="icn icn-list s-fc3"
@@ -73,7 +74,7 @@
                             class="line"></span>
                         <a href="javascript:;" class="clear" data-action="clear"><span class="ico icn-del"></span>清除</a>
                         <p class="lytit f-ff0 f-thide j-flag">{{songDetail.name}}</p>
-                        <span class="close" data-action="close">关闭</span>
+                        <span class="close" @click="isDisplay=true">关闭</span>
                     </div>
                 </div>
                 <div class="listbd">
@@ -148,16 +149,16 @@
             }
         },
         methods: {
-            test(){
-                //一些方法可以在这里测试
+            loopChange(){
+                this.$store.commit('loopFresh');
             },
             prev(){
                 this.$store.commit('prev');
-                this.$store.dispatch('getMusicUrl', this)
+                this.$store.dispatch('getMusicUrl')
             },
             next(){
                 this.$store.commit('next');
-                this.$store.dispatch('getMusicUrl', this)
+                this.$store.dispatch('getMusicUrl')
             },
             play(){
                 this.$store.commit('play');
@@ -175,12 +176,39 @@
                 this.$store.commit('drag',progress / tracklong);//控制进度条的长短
                 this.$store.commit('jump', progress / tracklong)//控制歌曲的进度
             }
+
         },
         computed: {
+            loopStyle(){
+              return {
+                    "icn-loop":this.$store.state.loopStyle==0,
+                    "icn-shuffle":this.$store.state.loopStyle==1,
+                    "icn-one":this.$store.state.loopStyle==2
+                  }
+            },
             duration () {
                 return this.$store.state.duration;
             },
             currentTime(){
+//              注册一个事件，判断歌曲是否唱完了
+                if(this.$store.state.currentTime >0 && this.$store.state.currentTime==this.$store.state.duration) {
+                    //  先说loop的切换方式
+                    //    其实这里应该想办法调用next的方法的
+                    switch (this.$store.state.loopStyle) {
+                        case 0:
+                            this.$store.commit('next');
+                            this.$store.dispatch('getMusicUrl')
+                            break;
+                        case 1:
+                            this.$store.commit('random');
+                            this.$store.dispatch('getMusicUrl')
+                            break;
+                        case 2:
+                            this.$store.commit('drag', 0);//控制进度条的长短
+                            this.$store.commit('jump', 0)//控制歌曲的进度
+                            break;
+                    }
+                }
                 return this.$store.state.currentTime;
             },
             loading(){
@@ -213,7 +241,8 @@
                         }
                     }
                 }
-            }
+            },
+
         },
         mounted () {
             var This = this;
@@ -1906,6 +1935,15 @@
     .m-playbar .listbd .scrol-1 {
         left: auto;
         right: 0;
+    }
+    .m-playbar .icn-shuffle {
+        background-position: -66px -248px;
+    }
+    .m-playbar .icn-one {
+        background-position: -66px -344px;
+    }
+    .m-playbar .icn-loop {
+        background-position: -3px -344px;
     }
 
 </style>

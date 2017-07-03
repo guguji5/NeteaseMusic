@@ -4,6 +4,19 @@ Vue.use(VueResource);
 
 var apiContext='/api/';//因为反向代理必须有个标识，为此而配
 
+/*
+* this换成  vm  老传参太蠢了
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* */
+
 //获取banner，主页面
 let banner=This=>{
     return This.$resource(apiContext+'banner');
