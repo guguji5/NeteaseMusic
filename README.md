@@ -5,7 +5,7 @@
 这个demo旨在练习vue.js,尝试用vue2.0重构网易云音乐pc版。后台接口是从网上找的开源的[网易云音乐的api](https://binaryify.github.io/NeteaseCloudMusicApi)。
 下载到本地并执行`node app`然后监听localhost:3000端口即可访问。
 
-*后台api是本地获取数据必备*
+*后台api是本地获取数据必备，本地调用需先启动api服务*
 
 ![首页](/home.gif "首页")
 ![歌词页](/detail.gif "歌词页")
