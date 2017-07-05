@@ -1882,6 +1882,11 @@
         width: 354px;
         overflow: hidden;
     }
+    .m-playbar .listlyric .position {
+      position: absolute;
+      height: 219px;
+      width: 354px;
+    }
 
     .m-playbar .listlyric p {
         color: #989898;
